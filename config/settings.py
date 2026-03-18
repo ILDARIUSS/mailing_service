@@ -84,11 +84,11 @@ STATIC_URL = "static/"
 
 # ===================== Настройки отправки почты через Yandex =====================
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'              # SMTP сервер Yandex
-EMAIL_PORT = 465                             # SSL порт
-EMAIL_USE_SSL = True                         # SSL включен
-EMAIL_USE_TLS = False                        # TLS не нужен при SSL
-EMAIL_HOST_USER = 'dariussafarius@yandex.ru'  # Логин нового аккаунта
-EMAIL_HOST_PASSWORD = 'csqvfwjlicffnycc'      # Пароль приложения
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.yandex.ru")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 465))
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", "True") == "True"
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "False") == "True"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER SERVER_EMAIL = EMAIL_HOST_USER
