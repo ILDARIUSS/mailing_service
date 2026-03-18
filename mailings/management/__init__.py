@@ -1,0 +1,1 @@
+# mailings/management/__init__.py

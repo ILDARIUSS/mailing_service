@@ -1,0 +1,36 @@
+<!-- mailings/templates/mailings/mailing_sent.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mailing Sent - {{ mailing.name }}</title>
+</head>
+<body>
+    <h1>Mailing: {{ mailing.name }}</h1>
+    <p>Status: {{ mailing.status }}</p>
+
+    <h2>Attempt Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Recipient</th>
+                <th>Status</th>
+                <th>Server Response</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attempt in attempts %}
+                <tr>
+                    <td>{{ attempt.recipient.email }}</td>
+                    <td>{{ attempt.status }}</td>
+                    <td>{{ attempt.server_response }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'mailings:dashboard' %}">Back to Dashboard</a>
+</body>
+</html>
